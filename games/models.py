@@ -4,7 +4,7 @@ from django.db import models
 
 class Developers(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
@@ -20,8 +20,8 @@ class Games(models.Model):
     description = models.TextField(null=False, blank=False)
     developer = models.ForeignKey(Developers, on_delete=models.CASCADE, null=False, blank=False)
     date_realise = models.DateField(null=False)
-    sellers = models.IntegerField()
-    calification = models.IntegerField()
+    sellers = models.IntegerField(blank=True)
+    calification = models.IntegerField(blank=True)
     gender = models.ManyToManyField(Genders)
 
     def __str__(self):
