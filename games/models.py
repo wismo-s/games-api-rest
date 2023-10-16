@@ -6,13 +6,13 @@ class Developers(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
 
-    def str(self):
+    def __str__(self):
         return self.name
 
 class Genders(models.Model):
     title = models.CharField(max_length=100, unique=True, null=False, blank=False)
 
-    def str(self):
+    def __str__(self):
         return self.title
 
 class Games(models.Model):
@@ -24,5 +24,5 @@ class Games(models.Model):
     calification = models.IntegerField()
     gender = models.ManyToManyField(Genders)
 
-    def str(self):
+    def __str__(self):
         return f"{self.title} -> {self.developer}"
