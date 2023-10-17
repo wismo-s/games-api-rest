@@ -1,9 +1,7 @@
-import React from 'react'
 
-function formGenders() {
+export function FormGenders() {
   return (
     <div>formGenders</div>
   )
 }
 
-export default formGenders

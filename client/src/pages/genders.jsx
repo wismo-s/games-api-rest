@@ -1,9 +1,6 @@
-import React from 'react'
 
-function genders() {
+export function Genders() {
   return (
-    <div>genders</div>
+    <h1>genders</h1>
   )
 }
-
-export default genders
