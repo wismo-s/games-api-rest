@@ -1,20 +1,21 @@
-import React, { useContext } from 'react';
-import { ListObjent } from '../components/listObjent'; // Asegúrate de que la importación sea correcta
-import listContext from '../api/objecContex'
+import React, { useState, useEffect } from 'react';
+import { listAllObj } from '../api/list.api'
 
 export function Games() {
 
-    const objs = useContext(listContext);
-    console.log(objs);
+  const [objs, setObj] = useState([]);
+
+    useEffect(() => {
+      async function getObj() {
+        const res = await listAllObj('games/');
+        setObj(res.data);
+        console.log(res.data);
+    }
+    getObj();
+    }, []);
 
     return (
-        <ListObjent url="games/">
-        </ListObjent>
-    );
-}
-
-/*
-            <div>
+           <div>
                 {objs.map(game => (
                     <div key={game.id}>
                         <h1>{game.title}</h1>
@@ -37,4 +38,5 @@ export function Games() {
                     </div>
                 ))}
             </div>
-            */
+    );
+}
