@@ -4,13 +4,16 @@ from django.db import models
 
 class Developers(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
+    perfil_image = models.CharField(max_length=300, null=True)
+    baner_image = models.CharField(max_length=300, blank=True, null= True)
+    description = models.TextField()
 
     def __str__(self):
         return self.name
 
 class Genders(models.Model):
     title = models.CharField(max_length=100, unique=True, null=False, blank=False)
+    image_url = models.CharField(max_length=300, blank=True, null= True)
 
     def __str__(self):
         return self.title
@@ -18,6 +21,8 @@ class Genders(models.Model):
 class Games(models.Model):
     title = models.CharField(max_length=200, unique=True, null=False, blank=False)
     description = models.TextField(null=False, blank=False)
+    port_image = models.CharField(max_length=300, null=True)
+    baner_image = models.CharField(max_length=300, blank=True, null= True)
     developer = models.ForeignKey(Developers, on_delete=models.CASCADE, null=False, blank=False)
     date_realise = models.DateField(null=False)
     sellers = models.IntegerField(blank=True)
