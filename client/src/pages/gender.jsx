@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { listAllObj } from '../api/list.api'
 import { useParams } from 'react-router-dom';
+import { Game } from '../components/game';
 
 export function Gender() {
     
@@ -29,8 +30,6 @@ export function Gender() {
         return <p>Cargando datos...</p>;
     }
     const gamesfilter = games.filter(game => game.gender.includes(parseInt(id)));
-    console.log(gamesfilter);
-    console.log(gender);
     return (
         <div>
             <div>
@@ -41,25 +40,7 @@ export function Gender() {
             </div>
             <div>
                 {gamesfilter.map(game => (
-                    <div key={game.id}>
-                    <h1>{game.title}</h1>
-                    <p>{game.description}</p>
-                    <p>{game.date_realise}</p>
-                    <p>{game.calification}</p>
-                    <p>{game.sellers}</p>
-                    <p>{game.developer}</p>
-                    <div>
-                        {game.gender.map(gen => (
-                            <p key={gen.id}>{gen}</p>
-                        ))}
-                    </div>
-                    <div>
-                        <img src={game.port_image} alt="" />
-                    </div>
-                    <div>
-                        <img src={game.baner_image} alt="" />
-                    </div>
-                </div>
+                    <Game key={game.id} game={game} />
                 ))}
             </div>
         </div>
