@@ -23,17 +23,14 @@ export function Game(props) {
     const [dev] = objd
 
   return (
-    <Link key={props.game.id} to={`/games/${props.game.id}`}>
-    <div>
-        <div>
-            <img src={props.game.port_image} alt="" />
-        </div>
-        <h1>{props.game.title}</h1>
-        <p>{props.game.date_realise}</p>
-        <p>{props.game.calification}</p>
-        <p>{dev.name}</p>
+    <div key={props.game.id}  className="w-56 bg-blue-700 h-96 rounded-lg shadow">
+        <Link to={`/games/${props.game.id}`}>
+        <div style={{ backgroundImage: `url(${props.game.port_image})` }} className=" bg-top bg-cover h-64 w-56 bg-no-repeat"></div>
+        <h2 className="text-lg text-white font-bold mt-1 ml-2 w-auto">{props.game.title}</h2>
+        <p className="text-green-400 ml-2 font-bold">{dev.name}</p>
+        <p className="text-white ml-2 pr-32">{props.game.date_realise}</p>
+        <div className="text-white ml-40 pl-3 pt-2 w-10 h-10 bg-green-500">{props.game.calification}</div>
+        </Link>
     </div>
-    </Link>
-    
   )
 }

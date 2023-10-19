@@ -15,7 +15,7 @@ export function Games() {
     }, []);
 
     return (
-           <div>
+           <div className="grid grid-flow-row grid-cols-5 gap-5 w-9/12 m-auto">
                 {objs.map(game => (
                     <Game key={game.id} game={game} />
                 ))}
