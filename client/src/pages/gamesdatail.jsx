@@ -33,10 +33,10 @@ export function Gamesdatail() {
         getData()
     }, [])
 
-    if (developer === null || gender == null) {
+    if (developer === null || gender === null || game === null) {
         return <p>Cargando datos...</p>;
     }
-
+    console.log(game);
     const objd = developer.filter(dev => dev.id == game.id);
     const objg = gender.filter(gen => game.gender.includes(gen.id));
     const [dev] = objd
@@ -48,6 +48,7 @@ export function Gamesdatail() {
         <p>{game.date_realise}</p>
         <p>{game.calification}</p>
         <p>{game.sellers}</p>
+        <p>{dev.name}</p>
         <Link to={`/developers/${dev.id}/`}><p>{dev.name}</p></Link>
         <div>
             {objg.map(gen => (

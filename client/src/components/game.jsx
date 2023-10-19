@@ -31,7 +31,7 @@ export function Game(props) {
         <h1>{props.game.title}</h1>
         <p>{props.game.date_realise}</p>
         <p>{props.game.calification}</p>
-        <Link to={`/developers/${dev.id}/`}><p>{dev.name}</p></Link>
+        <p>{dev.name}</p>
     </div>
     </Link>
     
