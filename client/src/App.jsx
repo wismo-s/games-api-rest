@@ -10,6 +10,7 @@ import { UserProfile } from './pages/userprofile'
 import { Navegation } from './components/navegation'
 import { Developer } from './pages/developer'
 import { Gender } from "./pages/gender";
+import { Gamesdatail } from './pages/gamesdatail'
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/gender/:id" element={<Gender />} />
         <Route path="/gender/form" element={<FormGenders />} />
         <Route path="/games" element={<Games />} />
+        <Route path="/games/:id" element={<Gamesdatail />} />
         <Route path="/games/form" element={<FormGames />} />
         <Route path="/developers" element={<Developers />} />
         <Route path="/developers/:id" element={<Developer />} />
