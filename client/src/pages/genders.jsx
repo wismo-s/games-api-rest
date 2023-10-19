@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { listAllObj } from '../api/list.api'
+import { Link } from "react-router-dom"
 
 export function Genders() {
 
@@ -19,7 +20,7 @@ export function Genders() {
     <div>
       {genders.map(gender =>(
         <div key={gender.id}>
-          <h2>{gender.title}</h2>
+          <Link to={`/gender/${gender.id}`}><h2>{gender.title}</h2></Link>
           <img src={gender.image_url} alt="" />
         </div>
       ))}

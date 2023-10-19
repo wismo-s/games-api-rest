@@ -9,6 +9,7 @@ import { FormDevelopers } from './pages/formdevelopers'
 import { UserProfile } from './pages/userprofile'
 import { Navegation } from './components/navegation'
 import { Developer } from './pages/developer'
+import { Gender } from "./pages/gender";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/games" />} />
         <Route path="/gender" element={<Genders />} />
+        <Route path="/gender/:id" element={<Gender />} />
         <Route path="/gender/form" element={<FormGenders />} />
         <Route path="/games" element={<Games />} />
         <Route path="/games/form" element={<FormGames />} />
