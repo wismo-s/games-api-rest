@@ -19,7 +19,7 @@ export function Game(props) {
         return <p>Cargando datos...</p>;
     }
 
-    const objd = developer.filter(dev => dev.id == props.game.id);
+    const objd = developer.filter(dev => dev.id == props.game.developer);
     const [dev] = objd
 
   return (
