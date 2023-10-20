@@ -15,7 +15,7 @@ export function Game(props) {
     }, []);
 
 
-    if (developer === null) {
+    if (developer === null || developer == []) {
         return <p>Cargando datos...</p>;
     }
 

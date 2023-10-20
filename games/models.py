@@ -23,6 +23,7 @@ class Games(models.Model):
     description = models.TextField(null=False, blank=False)
     port_image = models.CharField(max_length=300, null=True)
     baner_image = models.CharField(max_length=300, blank=True, null= True)
+    trailer = models.CharField(max_length=300, blank=True, null=True)
     developer = models.ForeignKey(Developers, on_delete=models.CASCADE, null=False, blank=False)
     date_realise = models.DateField(null=False)
     sellers = models.IntegerField(blank=True)
