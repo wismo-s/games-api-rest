@@ -15,7 +15,7 @@ import { Gamesdatail } from './pages/gamesdatail'
 export default function App() {
   return (
     <BrowserRouter>
-      <Navegation />
+      <Navegation>
       <Routes>
         <Route path="/" element={<Navigate to="/games" />} />
         <Route path="/gender" element={<Genders />} />
@@ -29,6 +29,7 @@ export default function App() {
         <Route path="/developers/form" element={<FormDevelopers />} />
         <Route path="/userProfile" element={<UserProfile />} />
       </Routes>
+      </Navegation>
     </BrowserRouter>
   )
 }

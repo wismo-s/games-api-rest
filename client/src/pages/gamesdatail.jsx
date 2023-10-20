@@ -42,24 +42,25 @@ export function Gamesdatail() {
     const [dev] = objd
 
   return (
-    <div>
-        <h1>{game.title}</h1>
-        <p>{game.description}</p>
-        <p>{game.date_realise}</p>
-        <p>{game.calification}</p>
-        <p>{game.sellers}</p>
-        <p>{dev.name}</p>
-        <Link to={`/developers/${dev.id}/`}><p>{dev.name}</p></Link>
-        <div>
-            {objg.map(gen => (
-                <Link key={gen.id} to={`/gender/${gen.id}/`}><p>{gen.title}</p></Link>
-            ))}
+    <div className="w-4/5 m-auto mt-3 mb-3 relative">
+        <div style={{ backgroundImage: `url(${game.port_image})` }} className="inline-block bg-top bg-cover h-96 w-72 bg-no-repeat relative mb-4"></div>
+        <div className='absolute left-80 top-1'>
+            <h1 className="text-5xl font-bold text-white mb-3">{game.title}</h1>
+            <p className="text-xl mb-2 text-slate-200">{game.description}</p>
+            <p className="text-xl mb-2 text-slate-200">Realise Date: {game.date_realise}</p>
+            <p className="text-xl mb-2 text-slate-200">Units Solid: {game.sellers}</p>
+            <Link to={`/developers/${dev.id}/`}><p className="text-green-200 text-xl mb-2 font-bold">Studio: {dev.name}</p></Link>
+            <div className="text-xl mb-2 text-slate-200">Genders:
+                {objg.map(gen => (
+                <Link className="inline-block pr-2 pl-2 pt-1 pb-1 bg-cyan-600 ml-2 hover:bg-cyan-700" key={gen.id} to={`/gender/${gen.id}/`}><p>{gen.title}</p></Link>
+                ))}
+            </div>
+            <div className="text-xl mb-2 text-white font-bold">Metacritic: 
+            <p className="pl-3 pt-2 w-12 h-11 ml-3 bg-green-500 inline-block border-green-600 border" >{game.calification}</p>
+            </div>
         </div>
-        <div>
-            <img src={game.port_image} alt="" />
-        </div>
-        <div>
-            <img src={game.baner_image} alt="" />
+        <div className="mb-5">
+            <img src={game.baner_image} alt="" className="w-full" />
         </div>
     </div>
   )
