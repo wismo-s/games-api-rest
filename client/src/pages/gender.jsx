@@ -32,13 +32,11 @@ export function Gender() {
     const gamesfilter = games.filter(game => game.gender.includes(parseInt(id)));
     return (
         <div>
+            <div style={{ backgroundImage: `url(${gender.image_url})` }} className="inline-block bg-center bg-cover h-96 w-full bg-no-repeat relative mb-4 opacity-90"></div>
             <div>
-                <h1>{gender.title}</h1>
-                <div>
-                    <img src={gender.image_url} alt="" />
-                </div>
+                <h1 className="text-5xl mb-2 text-white font-bold ml-6">{gender.title}</h1>
             </div>
-            <div>
+            <div className="grid grid-flow-row grid-cols-4 gap-5 w-3/4 m-auto mt-8 pb-5">
                 {gamesfilter.map(game => (
                     <Game key={game.id} game={game} />
                 ))}
