@@ -59,10 +59,10 @@ export function Gamesdatail() {
             </div>
         </div>
         <div className="mb-5">
-            <iframe src={`https://www.youtube.com/embed/${game.trailer}`} className="w-full" style={{ height: "700px" }} allowFullScreen></iframe>
+            <iframe  title="YouTube Video" src={`https://www.youtube.com/embed/${game.trailer}`} className="w-full" style={{ height: "700px" }} allowFullScreen></iframe>
         </div>
         <div className="mb-5">
-            <img title="YouTube Video" src={game.baner_image} alt="" className="w-full" />
+            <img src={game.baner_image} alt="" className="w-full" />
         </div>
     </div>
   )
