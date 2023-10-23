@@ -5,16 +5,16 @@ import { postform } from "../api/list.api";
 
 export function FormGames() {
   const [formdata, setformdata] = useState({
-    baner_image: '',
-    calification: 0,
-    date_realise: '',
+    title: '',
     description: '',
+    port_image: '',
+    baner_image: '',
+    trailer: '',
+    date_realise: '',
+    sellers: 0,
+    calification: 0,
     developer: '',
     gender: [],
-    port_image: '',
-    sellers: 0,
-    title: '',
-    trailer: '',
   })
   const [gendata, setgendata] = useState([])
   const [devs, setdevs] = useState([]);
