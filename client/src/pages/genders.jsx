@@ -26,6 +26,7 @@ export function Genders() {
           </Link>
         </div>
       ))}
+      <Link to='/gender/form'>form games</Link>
     </div>
   )
 }

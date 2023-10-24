@@ -22,7 +22,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('games/', include('games.urls')),
-    path('users/', include('userapp.urls'))
 ]
 
 if settings.DEBUG:

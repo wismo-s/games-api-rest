@@ -12,6 +12,6 @@ class DeveloperViewSet(viewsets.ModelViewSet):
     serializer_class = DevelopersSerializer
     queryset = Developers.objects.all()
 
-class GendersViewSet(viewsets. ModelViewSet):
+class GendersViewSet(viewsets.ModelViewSet):
     serializer_class = GendersSerializer
     queryset = Genders.objects.all()

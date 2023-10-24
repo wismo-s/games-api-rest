@@ -79,7 +79,7 @@ export function FormGames() {
       <div className="w-4/5 m-auto mt-3 mb-3 relative h-screen">
         <div style={{ backgroundImage: `url(${formdata.port_image})` }} className="inline-block bg-top bg-cover h-96 w-72 bg-no-repeat relative mb-4"></div>
         <form onSubmit={handlesubmit} className='absolute left-80 top-1 h-screen'>
-          <input required placeholder="titulo" className="text-5xl font-bold text-slate-600e mb-3 block" type="text" id="title" name="title" value={formdata.title} onChange={handleinputchange} />
+          <input required placeholder="titulo" className="text-5xl font-bold text-slate-600 mb-3 block" type="text" id="title" name="title" value={formdata.title} onChange={handleinputchange} />
           <input required placeholder="img portada url"  className="text-xl mb-2 text-slate-600 block w-full" type="text" id="port_image" name="port_image" value={formdata.port_image} onChange={handleinputchange} />
           <textarea required className="text-xl mb-2 text-slate-600 block w-full" placeholder="descripcion" id="description" name="description" value={formdata.description} onChange={handleinputchange} />
           <label htmlFor="date_realise" className="text-xl mb-2 text-slate-100">date realise: </label>

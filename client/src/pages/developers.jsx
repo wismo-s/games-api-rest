@@ -25,6 +25,7 @@ export function Developers() {
             </Link>
           </div>
         ))}
+        <Link to='/developers/form'>devs form</Link>
       </div>
     )
   }
