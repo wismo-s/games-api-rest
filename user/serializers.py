@@ -7,17 +7,24 @@ User_model = get_user_model()
 class CustomUserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User_model
-        fields = '__all__'
-    def create(self, clean_data):
-        user = User_model.objects.create_user(username=clean_data['username'], clean_data=clean_data['set_password'])
+        fields = ['username', 'email', 'password']
+    def create(self, validated_data):
+        user = User_model.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password']
+        )
+        user.username = validated_data['username']
         user.save()
         return user
 
-class CustomUserLoginSerializer(serializers.ModelSerializer):
+class CustomUserLoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
-    def check_user(self, clean_data):
-        user = authenticate(username=clean_data['username'], password=clean_data['password'])
+    class Meta:
+        pass 
+    def check_user(self, validated_data):
+        user = authenticate(username=validated_data['username'], password=validated_data['password'])
         if not user:
             raise ValidationError('user not found')
         return user
