@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication
 from django.contrib.auth import get_user_model, login, logout
@@ -8,6 +9,8 @@ from .validations import customValidation, validateUsername, validatePassword
 Customuser = get_user_model()
 
 class CustomUserRegisterView(APIView):
+    permission_classes = (permissions.AllowAny,)
+    authentication_classes = ()
     def post(self, request):
         serializer = CustomUserRegisterSerializer(data=request.data)
         if serializer.is_valid():
@@ -19,20 +22,22 @@ class CustomUserRegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CustomUserLoginView(APIView):
+    permission_classes = (permissions.AllowAny,)
+    authentication_classes = ()
     def post(self, request):
         data = request.data
         if validateUsername(data) and validatePassword(data):
-            serialiser = CustomUserLoginSerializer(data=data)
-            if serialiser.is_valid(raise_exception=True):
-                user = serialiser.check_user(data)
+            serializer = CustomUserLoginSerializer(data=data)
+            if serializer.is_valid(raise_exception=True):
+                user = serializer.check_user(data)
                 login(request, user)
-                return Response(serialiser.data, status=status.HTTP_200_OK)
+                token, created = Token.objects.get_or_create(user=user)  
+                return Response({'token': token.key}, status=status.HTTP_200_OK)  
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class CustomUserLogoutView(APIView):
     permission_classes = (permissions.AllowAny,)
     authentication_classes = ()
- 
     def post(self, request):
         logout(request)
         return Response(status=status.HTTP_200_OK)

@@ -4,16 +4,18 @@ axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
 
-
+const token = localStorage.getItem('token');
+axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 const client = axios.create({
   baseURL: "http://127.0.0.1:8000"
 });
 
 export function Createuser() {
 
-  const [curretuser, setCurrentuser] = useState(false);
+  const [curretuser, setCurrentuser] = useState();
   const [dataform, setDataform] = useState({
     username: '',
+    email: '',
     password: ''
   })
 
@@ -31,7 +33,10 @@ export function Createuser() {
     e.preventDefault();
     client.post("user/register/", dataform)
     .then(function (res) {
-      client.post("user/login/", dataform)
+      client.post("/user/login/", {
+        username: dataform.username,
+        password: dataform.password
+      })
     })
     .then(function (res) {
       setCurrentuser(true)
@@ -46,6 +51,7 @@ export function Createuser() {
   return (
     <form onSubmit={handleSubmit}>
       <input type="text" name="username" id='username' value={dataform.username} onChange={handleInputChange}/>
+      <input type="email" name="email" id='email' value={dataform.email} onChange={handleInputChange}/>
       <input type="password" name="password" id='password' value={dataform.password} onChange={handleInputChange}/>
       <button>sing in</button>
     </form>
