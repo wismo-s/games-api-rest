@@ -10,19 +10,18 @@ class CustomUserRegisterView(APIView):
     def post(self, request):
         clean_data = customValidation(request.data)
         serializer = CustomUserRegisterSerializer(data=clean_data)
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             user = serializer.create(clean_data)
             if user:
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 class CustomUserLoginView(APIView):
     def post(self, request):
         data = request.data
         if validateUsername(data) and validatePassword(data):
             serialiser = CustomUserLoginSerializer(data=data)
-            if serialiser.is_valid():
+            if serialiser.is_valid(raise_exception=True):
                 user = serialiser.check_user(data)
                 login(request, user)
                 return Response(serialiser.data, status=status.HTTP_200_OK)

@@ -11,6 +11,10 @@ import { Navegation } from './components/navegation'
 import { Developer } from './pages/developer'
 import { Gender } from "./pages/gender";
 import { Gamesdatail } from './pages/gamesdatail'
+import { Createuser } from './pages/createuser'
+import { Longin } from './pages/longin'
+import { Logout } from './pages/logout'
+import { User } from './pages/user'
 
 export default function App() {
   return (
@@ -28,6 +32,10 @@ export default function App() {
         <Route path="/developers/:id" element={<Developer />} />
         <Route path="/developers/form" element={<FormDevelopers />} />
         <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/login" element={<Longin />} />
+        <Route path="/singin" element={<Createuser />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/user" element={<User />} />
       </Routes>
       </Navegation>
     </BrowserRouter>
