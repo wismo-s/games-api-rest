@@ -1,18 +1,22 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import Cookies from 'js-cookie';
 
-const token = localStorage.getItem('token');
+const token = Cookies.get('sessiontoken')
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
   });
-  client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
+axios.defaults.headers.common['Authorization'] = `Token  ${token}`;
 export function User() {
-    const [user, setuser] = useState();
+    const [user, setuser] = useState({
+        username: '',
+        image_perfil: ''
+    });
     const [current, setcurrent] = useState()
     useEffect(()=>{
         client.get("/user/user/")
-        .then((res)=>setuser(true))
+        .then((res)=>{setuser(res.data.user); console.log(res)})
         .catch((err)=>setcurrent(false))
     }, [])
 
@@ -21,10 +25,11 @@ export function User() {
             <div>login please</div>
         )
     }
-    console.log(user);
+    console.log(token);
     return (
             <div>
-                <h1>prueva</h1>
+                <h1>{user.username}</h1>
+                <p>{user.image_perfil}</p>
             </div>
         )
 }

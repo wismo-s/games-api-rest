@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.authentication import SessionAuthentication
 from django.contrib.auth import get_user_model, login, logout
 from rest_framework import permissions, status
@@ -24,6 +25,7 @@ class CustomUserRegisterView(APIView):
 class CustomUserLoginView(APIView):
     permission_classes = (permissions.AllowAny,)
     authentication_classes = ()
+    
     def post(self, request):
         data = request.data
         if validateUsername(data) and validatePassword(data):
@@ -44,8 +46,9 @@ class CustomUserLogoutView(APIView):
 
 class CustomUserView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (SessionAuthentication,)
+    authentication_classes = (TokenAuthentication,)
     
     def get(self, request):
-        serializer = CustomUserSerializer(request.user)
+        user = request.user
+        serializer = CustomUserSerializer(user)
         return Response({'user': serializer.data}, status=status.HTTP_200_OK)

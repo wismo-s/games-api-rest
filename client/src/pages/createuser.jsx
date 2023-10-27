@@ -4,8 +4,7 @@ axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
 
-const token = localStorage.getItem('token');
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
 const client = axios.create({
   baseURL: "http://127.0.0.1:8000"
 });

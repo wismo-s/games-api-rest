@@ -6,7 +6,7 @@ const client = axios.create({
   baseURL: "http://127.0.0.1:8000/",
   withCredentials: true,
 });
-
+axios.defaults.headers.common['Authorization'] = `Token ${Cookies.get('sessiontoken')}`;
 export function Longin() {
   const [current, setCurrent] = useState();
   const [formdata, setFormdata] = useState({
@@ -31,7 +31,7 @@ export function Longin() {
         if (res.status === 200) {
             console.log(res.data['token']);
             const jwt = res.data['token']
-            Cookies.set('sessionid', jwt, {expires: 7})
+            Cookies.set('sessiontoken', jwt, {expires: 7})
           setCurrent(true);
         }
       })
