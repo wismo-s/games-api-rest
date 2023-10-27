@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes ,Route, Navigate } from 'react-router-dom'
 import { Genders } from './pages/genders'
 import { FormGenders } from './pages/formGenders'
@@ -15,29 +15,58 @@ import { Createuser } from './pages/createuser'
 import { Longin } from './pages/longin'
 import { Logout } from './pages/logout'
 import { User } from './pages/user'
+import { Contextapp } from './api/context'
+import { listAllObj } from './api/list.api'
+
 
 export default function App() {
+  const [data, setData] = useState({
+    games: [],
+    genders: [],
+    developers: [],
+    loading: true,
+    sesion: false
+  })
+  useEffect(() => {
+    async function getObj() {
+      const games = await listAllObj('games/');
+      const gender = await listAllObj('genders/');
+      const devs = await listAllObj('developers/');
+      setData({
+        games: games.data,
+        genders: gender.data,
+        developers: devs.data,
+        loading: false,
+        sesion: false
+      })
+      console.log(data);
+  }
+  getObj();
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Navegation>
-      <Routes>
-        <Route path="/" element={<Navigate to="/games" />} />
-        <Route path="/gender" element={<Genders />} />
-        <Route path="/gender/:id" element={<Gender />} />
-        <Route path="/gender/form" element={<FormGenders />} />
-        <Route path="/games" element={<Games />} />
-        <Route path="/games/:id" element={<Gamesdatail />} />
-        <Route path="/games/form" element={<FormGames />} />
-        <Route path="/developers" element={<Developers />} />
-        <Route path="/developers/:id" element={<Developer />} />
-        <Route path="/developers/form" element={<FormDevelopers />} />
-        <Route path="/userProfile" element={<UserProfile />} />
-        <Route path="/login" element={<Longin />} />
-        <Route path="/singin" element={<Createuser />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/user" element={<User />} />
-      </Routes>
-      </Navegation>
-    </BrowserRouter>
+    <Contextapp.Provider value={data}>
+      <BrowserRouter>
+        <Navegation>
+        <Routes>
+          <Route path="/" element={<Navigate to="/games" />} />
+          <Route path="/gender" element={<Genders />} />
+          <Route path="/gender/:id" element={<Gender />} />
+          <Route path="/gender/form" element={<FormGenders />} />
+          <Route path="/games" element={<Games />} />
+          <Route path="/games/:id" element={<Gamesdatail />} />
+          <Route path="/games/form" element={<FormGames />} />
+          <Route path="/developers" element={<Developers />} />
+          <Route path="/developers/:id" element={<Developer />} />
+          <Route path="/developers/form" element={<FormDevelopers />} />
+          <Route path="/userProfile" element={<UserProfile />} />
+          <Route path="/login" element={<Longin />} />
+          <Route path="/singin" element={<Createuser />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/user" element={<User />} />
+        </Routes>
+        </Navegation>
+      </BrowserRouter>
+    </Contextapp.Provider> 
   )
 }

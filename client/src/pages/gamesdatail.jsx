@@ -1,43 +1,18 @@
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from "react"
+import { useContext } from 'react';
+import { Contextapp } from '../api/context';
 import { listAllObj } from '../api/list.api'
 import { Link } from "react-router-dom";
 
 
 export function Gamesdatail() {
-    const [developer, setDeveloper] = useState(null);
-    const [gender, setGender] = useState(null)
-    const [game, setGame] = useState(null)
+
+    const context = useContext(Contextapp);
     const { id } = useParams();
 
-    useEffect(() => {
-        async function getDev() {
-            const res = await listAllObj(`games/${id}/`);
-            setGame(res.data)
-        }
-        getDev()
-    }, []);
-    useEffect(() => {
-        async function getDev() {
-            const res = await listAllObj(`developers/`);
-            setDeveloper(res.data)
-        }
-        getDev()
-    }, []);
-
-    useEffect(() =>{
-        async function getData() {
-            const res = await listAllObj(`genders/`);
-            setGender(res.data);
-        }
-        getData()
-    }, [])
-
-    if (developer === null || gender === null || game === null) {
-        return <p>Cargando datos...</p>;
-    }
-    const objd = developer.filter(dev => dev.id == game.developer);
-    const objg = gender.filter(gen => game.gender.includes(gen.id));
+    const [game] = context.games.filter(game => game.id == id)
+    const objd = context.developers.filter(dev => dev.id == game.developer);
+    const objg = context.genders.filter(gen => game.gender.includes(gen.id));
     const [dev] = objd
 
   return (

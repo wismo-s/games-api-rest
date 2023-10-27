@@ -1,2 +1,2 @@
 import { createContext } from "react";
-export const contextapp = createContext();
+export const Contextapp = createContext();

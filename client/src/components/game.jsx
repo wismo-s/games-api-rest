@@ -1,25 +1,11 @@
-import { useState, useEffect } from "react"
-import { listAllObj } from '../api/list.api'
+import { useContext } from "react"
+import { Contextapp } from "../api/context";
 import { Link } from "react-router-dom";
 
 export function Game(props) {
+    const context = useContext(Contextapp);
 
-    const [developer, setDeveloper] = useState(null);
-
-    useEffect(() => {
-        async function getDev() {
-            const res = await listAllObj(`developers/`);
-            setDeveloper(res.data)
-        }
-        getDev()
-    }, []);
-
-
-    if (developer === null || developer == []) {
-        return <p>Cargando datos...</p>;
-    }
-
-    const objd = developer.filter(dev => dev.id == props.game.developer);
+    const objd = context.developers.filter(dev => dev.id == props.game.developer);
     const [dev] = objd
 
   return (

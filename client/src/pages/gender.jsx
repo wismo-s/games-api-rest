@@ -1,40 +1,21 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import { Contextapp } from "../api/context"; 
 import { listAllObj } from '../api/list.api'
 import { useParams } from 'react-router-dom';
 import { Game } from '../components/game';
 
 export function Gender() {
     
-    const [gender, setgender] = useState([]);
-    const [games, setGames] = useState([]);
-
+    const context = useContext(Contextapp);
     const {id} = useParams();
-
-    useEffect(() =>{
-        async function getData() {
-            const res = await listAllObj(`genders/${id}/`);
-            setgender(res.data);
-        }
-        getData()
-    }, [id])
-
-    useEffect(() => {
-        async function getGames() {
-            const res = await listAllObj(`games/`);
-            setGames(res.data)
-        }
-        getGames()
-    }, [id]);
-
-    if (gender === null || games === null) {
-        return <p>Cargando datos...</p>;
-    }
-    const gamesfilter = games.filter(game => game.gender.includes(parseInt(id)));
+    
+    const [genderfilter] = context.genders.filter(gen => gen.id == id)
+    const gamesfilter = context.games.filter(game => game.gender.includes(parseInt(id)));
     return (
         <div>
-            <div style={{ backgroundImage: `url(${gender.image_url})` }} className="inline-block bg-center bg-cover h-96 w-full bg-no-repeat relative mb-4 opacity-90"></div>
+            <div style={{ backgroundImage: `url(${genderfilter.image_url})` }} className="inline-block bg-center bg-cover h-96 w-full bg-no-repeat relative mb-4 opacity-90"></div>
             <div>
-                <h1 className="text-5xl mb-2 text-white font-bold ml-6">{gender.title}</h1>
+                <h1 className="text-5xl mb-2 text-white font-bold ml-6">{genderfilter.title}</h1>
             </div>
             <div className="grid grid-flow-row grid-cols-4 gap-5 w-3/4 m-auto mt-8 pb-5">
                 {gamesfilter.map(game => (
