@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 export function Games() {
   const context = useContext(Contextapp);
+  console.log(context);
   return (
     <div>
       {context.loading ? (

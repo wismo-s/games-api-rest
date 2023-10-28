@@ -16,28 +16,33 @@ import { Longin } from './pages/longin'
 import { Logout } from './pages/logout'
 import { User } from './pages/user'
 import { Contextapp } from './api/context'
-import { listAllObj } from './api/list.api'
+import { listAllObj, userlist } from './api/list.api'
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
+const token = Cookies.get('sessiontoken')
+axios.defaults.headers.common['Authorization'] = `Token  ${token}`;
 
 export default function App() {
   const [data, setData] = useState({
     games: [],
     genders: [],
     developers: [],
-    loading: true,
-    sesion: false
+    user: {},
+    loading: true
   })
   useEffect(() => {
     async function getObj() {
       const games = await listAllObj('games/');
       const gender = await listAllObj('genders/');
       const devs = await listAllObj('developers/');
+      const user = await userlist();
       setData({
-        games: games.data,
-        genders: gender.data,
-        developers: devs.data,
-        loading: false,
-        sesion: false
+        games: games.data, 
+        genders: gender.data, 
+        developers: devs.data, 
+        user: user,
+        loading: false 
       })
       console.log(data);
   }
