@@ -8,12 +8,12 @@ export function Games() {
   console.log(context);
   return (
     <div>
-      {context.loading ? (
+      {context.data.loading ? (
         <div className="text-center">Loading...</div>
       ) : (
         <div>
           <div className="grid grid-flow-row grid-cols-5 gap-5 w-9/12 m-auto mt-8 pb-5">
-            {context.games.map((game) => (
+            {context.data.games.map((game) => (
               <Game key={game.id} game={game} />
             ))}
           </div>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export function Game(props) {
     const context = useContext(Contextapp);
 
-    const objd = context.developers.filter(dev => dev.id == props.game.developer);
+    const objd = context.data.developers.filter(dev => dev.id == props.game.developer);
     const [dev] = objd
 
   return (

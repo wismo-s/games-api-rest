@@ -9,8 +9,8 @@ export function Gender() {
     const context = useContext(Contextapp);
     const {id} = useParams();
     
-    const [genderfilter] = context.genders.filter(gen => gen.id == id)
-    const gamesfilter = context.games.filter(game => game.gender.includes(parseInt(id)));
+    const [genderfilter] = context.data.genders.filter(gen => gen.id == id)
+    const gamesfilter = context.data.games.filter(game => game.gender.includes(parseInt(id)));
     return (
         <div>
             <div style={{ backgroundImage: `url(${genderfilter.image_url})` }} className="inline-block bg-center bg-cover h-96 w-full bg-no-repeat relative mb-4 opacity-90"></div>

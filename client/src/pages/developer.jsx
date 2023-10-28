@@ -7,8 +7,8 @@ export function Developer() {
     const context = useContext(Contextapp);
     const { id } = useParams();
     
-    let [devfilter] = context.developers.filter((dev)=>dev.id == id)
-    let gamesfilter = context.games.filter((game) => game.developer == id)
+    let [devfilter] = context.data.developers.filter((dev)=>dev.id == id)
+    let gamesfilter = context.data.games.filter((game) => game.developer == id)
 
     return (
         <div>

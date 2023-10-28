@@ -29,20 +29,22 @@ export default function App() {
     genders: [],
     developers: [],
     user: {},
-    loading: true
+    loading: true,
+    session: false,
   })
   useEffect(() => {
     async function getObj() {
       const games = await listAllObj('games/');
       const gender = await listAllObj('genders/');
       const devs = await listAllObj('developers/');
-      const user = await userlist();
+      const [user, session] = await userlist();
       setData({
         games: games.data, 
         genders: gender.data, 
         developers: devs.data, 
         user: user,
-        loading: false 
+        loading: false,
+        session: session
       })
       console.log(data);
   }
@@ -50,7 +52,7 @@ export default function App() {
   }, []);
 
   return (
-    <Contextapp.Provider value={data}>
+    <Contextapp.Provider value={{data, setData}}>
       <BrowserRouter>
         <Navegation>
         <Routes>

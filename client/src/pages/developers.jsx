@@ -7,7 +7,7 @@ export function Developers() {
 
     return (
       <div className="grid grid-flow-row grid-cols-5 gap-5 w-9/12 m-auto mt-8 pb-5">
-        {context.developers.map(dev=>(
+        {context.data.developers.map(dev=>(
           <div key={dev.id} className="w-56 bg-blue-800 h-80 rounded-lg shadow-gray-800 shadow-lg" >
             <Link to={`/developers/${dev.id}`}>
             <div style={{ backgroundImage: `url(${dev.perfil_image})` }} className=" bg-top bg-cover h-64 w-56 bg-no-repeat hover:opacity-80"></div>

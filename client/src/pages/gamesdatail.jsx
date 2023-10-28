@@ -10,9 +10,9 @@ export function Gamesdatail() {
     const context = useContext(Contextapp);
     const { id } = useParams();
 
-    const [game] = context.games.filter(game => game.id == id)
-    const objd = context.developers.filter(dev => dev.id == game.developer);
-    const objg = context.genders.filter(gen => game.gender.includes(gen.id));
+    const [game] = context.data.games.filter(game => game.id == id)
+    const objd = context.data.developers.filter(dev => dev.id == game.developer);
+    const objg = context.data.genders.filter(gen => game.gender.includes(gen.id));
     const [dev] = objd
 
   return (
