@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'coreapi',
     'knox',
     'user',
-    'games'
+    'games',
+    'shop'
 ]
 
 MIDDLEWARE = [
