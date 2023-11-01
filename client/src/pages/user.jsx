@@ -4,7 +4,7 @@ import { Contextapp } from '../api/context';
 export function User() {
     const context = useContext(Contextapp)
     
-    if (!context.data.session) {
+    if (!context.session) {
         return(
             <div>login please</div>
         )

@@ -28,6 +28,7 @@ class Games(models.Model):
     date_realise = models.DateField(null=False)
     sellers = models.IntegerField(blank=True)
     calification = models.IntegerField(blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False, default=1)
     gender = models.ManyToManyField(Genders)
 
     def __str__(self):

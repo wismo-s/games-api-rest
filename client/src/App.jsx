@@ -21,16 +21,19 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const token = Cookies.get('sessiontoken')
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+axios.defaults.withCredentials = true;
 axios.defaults.headers.common['Authorization'] = `Token  ${token}`;
 
 export default function App() {
+  const [session, setSesion] = useState(false)
   const [data, setData] = useState({
     games: [],
     genders: [],
     developers: [],
     user: {},
     loading: true,
-    session: false,
   })
   useEffect(() => {
     async function getObj() {
@@ -38,13 +41,13 @@ export default function App() {
       const gender = await listAllObj('genders/');
       const devs = await listAllObj('developers/');
       const [user, session] = await userlist();
+      setSesion(session)
       setData({
         games: games.data, 
         genders: gender.data, 
         developers: devs.data, 
         user: user,
         loading: false,
-        session: session
       })
       console.log(data);
   }
@@ -52,7 +55,7 @@ export default function App() {
   }, []);
 
   return (
-    <Contextapp.Provider value={{data, setData}}>
+    <Contextapp.Provider value={{data, session: session , setData}}>
       <BrowserRouter>
         <Navegation>
         <Routes>
@@ -66,7 +69,7 @@ export default function App() {
           <Route path="/developers" element={<Developers />} />
           <Route path="/developers/:id" element={<Developer />} />
           <Route path="/developers/form" element={<FormDevelopers />} />
-          <Route path="/userProfile" element={<UserProfile />} />
+          <Route path="/userProfile" element={<UserProfile />} /> 
           <Route path="/login" element={<Longin />} />
           <Route path="/singin" element={<Createuser />} />
           <Route path="/logout" element={<Logout />} />

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Contextapp } from '../api/context';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const client = axios.create({
   baseURL: "http://127.0.0.1:8000/",
@@ -9,6 +10,7 @@ const client = axios.create({
 });
 
 export function Longin() {
+  const navigate = useNavigate()
   const context = useContext(Contextapp);
   const [formdata, setFormdata] = useState({
     username: "",
@@ -23,6 +25,8 @@ export function Longin() {
             const jwt = res.data['token']
             Cookies.set('sessiontoken', jwt, {expires: 7})
             context.setData({...context, session: true})
+            navigate('/user')
+            window.location.reload(true);
         }
       })
       .catch(err => console.log(err));
@@ -35,7 +39,7 @@ export function Longin() {
 
   return (
     <div>
-      {!context.data.session ? (
+      {!context.session ? (
         <form onSubmit={handleSubmit}>
           <input
             type="text"
