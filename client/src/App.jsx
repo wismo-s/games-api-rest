@@ -33,6 +33,7 @@ export default function App() {
     genders: [],
     developers: [],
     user: {},
+    cart: {},
     loading: true,
   })
   useEffect(() => {
@@ -40,13 +41,14 @@ export default function App() {
       const games = await listAllObj('games/');
       const gender = await listAllObj('genders/');
       const devs = await listAllObj('developers/');
-      const [user, session] = await userlist();
+      const [user, cart, session] = await userlist();
       setSesion(session)
       setData({
         games: games.data, 
         genders: gender.data, 
         developers: devs.data, 
         user: user,
+        cart: cart,
         loading: false,
       })
       console.log(data);

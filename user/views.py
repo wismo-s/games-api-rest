@@ -7,6 +7,8 @@ from django.contrib.auth import get_user_model, login, logout
 from rest_framework import permissions, status
 from .serializers import CustomUserLoginSerializer, CustomUserRegisterSerializer, CustomUserSerializer
 from .validations import customValidation, validateUsername, validatePassword
+from shop.models import Cart
+from shop.serializers import CartSerializer
 Customuser = get_user_model()
 
 class CustomUserRegisterView(APIView):
@@ -51,4 +53,13 @@ class CustomUserView(APIView):
     def get(self, request):
         user = request.user
         serializer = CustomUserSerializer(user)
-        return Response({'user': serializer.data}, status=status.HTTP_200_OK)
+        cart = Cart.objects.filter(id=serializer.data['cart']).first()
+        
+        if cart:
+            cart_serializer = CartSerializer(cart)
+            cart_data = cart_serializer.data
+        else:
+            cart_data = None
+        user_data = serializer.data
+        response_data = {'user': user_data, 'cart': cart_data['games']}
+        return Response(response_data, status=status.HTTP_200_OK)
