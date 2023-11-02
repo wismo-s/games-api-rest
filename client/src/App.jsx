@@ -15,8 +15,10 @@ import { Createuser } from './pages/createuser'
 import { Longin } from './pages/longin'
 import { Logout } from './pages/logout'
 import { User } from './pages/user'
+import { Cart } from './pages/cart'
 import { Contextapp } from './api/context'
 import { listAllObj, userlist } from './api/list.api'
+import { ContextCart } from './api/context'
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -28,12 +30,12 @@ axios.defaults.headers.common['Authorization'] = `Token  ${token}`;
 
 export default function App() {
   const [session, setSesion] = useState(false)
+  const [cart, setCart] = useState([])
   const [data, setData] = useState({
     games: [],
     genders: [],
     developers: [],
     user: {},
-    cart: {},
     loading: true,
   })
   useEffect(() => {
@@ -42,13 +44,13 @@ export default function App() {
       const gender = await listAllObj('genders/');
       const devs = await listAllObj('developers/');
       const [user, cart, session] = await userlist();
+      setCart(cart)
       setSesion(session)
       setData({
         games: games.data, 
         genders: gender.data, 
         developers: devs.data, 
         user: user,
-        cart: cart,
         loading: false,
       })
       console.log(data);
@@ -57,7 +59,8 @@ export default function App() {
   }, []);
 
   return (
-    <Contextapp.Provider value={{data, session: session , setData}}>
+    <Contextapp.Provider value={{data, session: session, setData}}>
+      <ContextCart.Provider value={{cart: cart, setCart}}>
       <BrowserRouter>
         <Navegation>
         <Routes>
@@ -74,11 +77,13 @@ export default function App() {
           <Route path="/userProfile" element={<UserProfile />} /> 
           <Route path="/login" element={<Longin />} />
           <Route path="/singin" element={<Createuser />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/user" element={<User />} />
         </Routes>
         </Navegation>
       </BrowserRouter>
+      </ContextCart.Provider>
     </Contextapp.Provider> 
   )
 }

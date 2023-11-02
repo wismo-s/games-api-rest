@@ -11,6 +11,7 @@ export function Navegation(props) {
         <Link className="text-white font-bold pt-2 pr-3 pl-3 hover:bg-blue-900 hover:text-green-400" to="/login">LOGIN</Link>
         <Link className="text-white font-bold pt-2 pr-3 pl-3 hover:bg-blue-900 hover:text-green-400" to="/logout">LOGOUT</Link>
         <Link className="text-white font-bold pt-2 pr-3 pl-3 hover:bg-blue-900 hover:text-green-400" to="/user">USER</Link>
+        <Link className="text-white font-bold pt-2 pr-3 pl-3 hover:bg-blue-900 hover:text-green-400" to="/cart">CART</Link>
         </div>
         <div>
           {props.children}
