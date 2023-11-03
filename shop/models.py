@@ -3,7 +3,7 @@ from django.utils import timezone
 from games.models import Games
 # Create your models here.
 class Cart(models.Model):
-    games = models.ManyToManyField(Games)
+    games = models.ManyToManyField(Games, blank=True)
     
 class Facture(models.Model):
     games = models.ManyToManyField(Games)

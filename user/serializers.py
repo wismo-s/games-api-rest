@@ -32,4 +32,4 @@ class CustomUserLoginSerializer(serializers.Serializer):
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User_model
-        fields = ('username', 'image_perfil', 'cart')
+        fields = ('username', 'image_perfil', 'cart', 'id')

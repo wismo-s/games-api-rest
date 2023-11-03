@@ -3,6 +3,8 @@ import { Contextapp } from '../api/context'
 import { Cartitem } from '../components/cartitem'
 import { cartEdit } from '../api/list.api'
 import { ContextCart } from '../api/context'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export function Cart() {
 
@@ -10,7 +12,7 @@ export function Cart() {
     const [cartitems, setCartitems] = useState([])
     const cartcontext = useContext(ContextCart)
     const [cartid, setCartid] = useState([])
-
+    const navigate = useNavigate()
     useEffect(()=>{
         const items =  context.data.games.filter(item => cartcontext.cart.includes(item.id))
         setCartid(cartcontext.cart)
@@ -37,6 +39,21 @@ export function Cart() {
             "games": remuvecartid
         })
     }
+    const handlePay = async () =>{
+        await axios.post('http://127.0.0.1:8000/user/facture/', {
+            "total": pricetotal,
+            "user": context.data.user.id,
+            "games": cartcontext.cart   
+        }).then((res)=>{
+            cartEdit(context.data.user.cart, {
+                "id": context.data.user.cart,
+                "games": []
+            })
+            cartcontext.setCart([]);
+            setCartitems([]);
+            navigate('/factures')
+        })
+    }
 
   return (
     <div>
@@ -49,7 +66,7 @@ export function Cart() {
                 ))}
         </div>
         <div>Total: {pricetotal}</div>
-        <button className="text-white font-bold p-2 w-20 rounded-lg bg-cyan-500">PAGAR</button>
+        <button className="text-white font-bold p-2 w-20 rounded-lg bg-cyan-500" onClick={handlePay}>PAGAR</button>
     </div>
   )
 }

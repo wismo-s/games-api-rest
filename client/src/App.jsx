@@ -19,6 +19,7 @@ import { Cart } from './pages/cart'
 import { Contextapp } from './api/context'
 import { listAllObj, userlist } from './api/list.api'
 import { ContextCart } from './api/context'
+import { Factures } from './pages/factures'
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -36,14 +37,15 @@ export default function App() {
     genders: [],
     developers: [],
     user: {},
-    loading: true,
+    facture: {},
+    loading: true
   })
   useEffect(() => {
     async function getObj() {
       const games = await listAllObj('games/');
       const gender = await listAllObj('genders/');
       const devs = await listAllObj('developers/');
-      const [user, cart, session] = await userlist();
+      const [user, cart, facture, session] = await userlist();
       setCart(cart)
       setSesion(session)
       setData({
@@ -51,7 +53,8 @@ export default function App() {
         genders: gender.data, 
         developers: devs.data, 
         user: user,
-        loading: false,
+        facture: facture,
+        loading: false
       })
       console.log(data);
   }
@@ -80,6 +83,7 @@ export default function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/user" element={<User />} />
+          <Route path="/factures" element={<Factures />} />
         </Routes>
         </Navegation>
       </BrowserRouter>

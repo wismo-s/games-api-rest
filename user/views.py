@@ -8,7 +8,8 @@ from rest_framework import permissions, status
 from .serializers import CustomUserLoginSerializer, CustomUserRegisterSerializer, CustomUserSerializer
 from .validations import customValidation, validateUsername, validatePassword
 from shop.models import Cart
-from shop.serializers import CartSerializer
+from shop.modelsFacture import Factures
+from shop.serializers import CartSerializer, FacturaSerializer
 Customuser = get_user_model()
 
 class CustomUserRegisterView(APIView):
@@ -53,13 +54,18 @@ class CustomUserView(APIView):
     def get(self, request):
         user = request.user
         serializer = CustomUserSerializer(user)
-        cart = Cart.objects.filter(id=serializer.data['cart']).first()
         
+        cart = Cart.objects.filter(id=serializer.data['cart']).first()
+        facture = Factures.objects.filter(user=user.id)
+        if facture:
+            facture_data = [FacturaSerializer(factura).data for factura in facture]
+        else:
+            facture_data = None
         if cart:
             cart_serializer = CartSerializer(cart)
             cart_data = cart_serializer.data
         else:
             cart_data = None
         user_data = serializer.data
-        response_data = {'user': user_data, 'cart': cart_data['games']}
+        response_data = {'user': user_data, 'cart': cart_data['games'], 'facture': facture_data}
         return Response(response_data, status=status.HTTP_200_OK)
