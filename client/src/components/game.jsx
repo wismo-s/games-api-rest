@@ -15,7 +15,7 @@ export function Game(props) {
         <h2 className="text-lg text-white font-bold mt-1 ml-2 w-auto">{props.game.title}</h2>
         <p className="text-green-400 ml-2 font-bold">{dev.name}</p>
         <p className="text-white ml-2 pr-32">{props.game.date_realise}</p>
-        <div className="text-white ml-40 pl-3 pt-2 w-10 h-10 bg-green-500">{props.game.calification}</div>
+        <div className="text-white font-bold ml-32 p-2 w-20 rounded-lg bg-cyan-500">$/.{props.game.price}</div>
         </Link>
     </div>
   )

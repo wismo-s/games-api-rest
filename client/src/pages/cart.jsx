@@ -49,6 +49,7 @@ export function Cart() {
                 ))}
         </div>
         <div>Total: {pricetotal}</div>
+        <button className="text-white font-bold p-2 w-20 rounded-lg bg-cyan-500">PAGAR</button>
     </div>
   )
 }
