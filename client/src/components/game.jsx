@@ -9,13 +9,13 @@ export function Game(props) {
     const [dev] = objd
 
   return (
-    <div key={props.game.id} className="w-56 bg-blue-800 h-96 rounded-lg shadow-gray-800 shadow-lg">
+    <div key={props.game.id} className="w-56 bg-violet-900 h-96 rounded-lg shadow shadow-zinc-600">
         <Link to={`/games/${props.game.id}`}>
         <div style={{ backgroundImage: `url(${props.game.port_image})` }} className=" bg-top bg-cover h-64 w-56 bg-no-repeat hover:opacity-80"></div>
         <h2 className="text-lg text-white font-bold mt-1 ml-2 w-auto">{props.game.title}</h2>
-        <p className="text-green-400 ml-2 font-bold">{dev.name}</p>
+        <p className="text-slate-400 ml-2 font-bold">{dev.name}</p>
         <p className="text-white ml-2 pr-32">{props.game.date_realise}</p>
-        <div className="text-white font-bold ml-32 p-2 w-20 rounded-lg bg-cyan-500">$/.{props.game.price}</div>
+        <div className="text-gray-200 font-bold ml-32 p-2 w-20 rounded-lg bg-purple-800">$/.{props.game.price}</div>
         </Link>
     </div>
   )

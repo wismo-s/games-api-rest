@@ -4,7 +4,7 @@ import { Contextapp } from '../api/context'
 export function Factures() {
     const context = useContext(Contextapp)
   return (
-    <div>
+    <div className=' inline-block bg-violet-900 mt-5 p-7'>
         {context.data.facture.map(factu => {
             const dat = new Date(factu.time_shop)
             const items =  context.data.games.filter(item => factu.games.includes(item.id))

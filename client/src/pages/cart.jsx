@@ -56,17 +56,19 @@ export function Cart() {
     }
 
   return (
-    <div>
-        <div>
+    <div className='h-screen'>
+        <div className='grid grid-flow-row gap-4 m-auto mt-5 w-2/4'>
         {cartitems.map(item => (
-                    <div key={item.id}>
+                    <div key={item.id} className='flex p-7 bg-violet-900 rounded-3xl justify-between'>
                         <Cartitem url={item.port_image} title={item.title} price={item.price}/>
-                        <button value={item.id} className='bg-white hover:bg-red-300' onClick={handleCLick}>eliminar</button>
+                        <button value={item.id} className='text-xl bg-violet-950 rounded-lg inline-block p-2 pl-5 pr-5 text-gray-300 hover:bg-purple-800 h-fit' onClick={handleCLick}>eliminar</button>
                     </div>    
                 ))}
         </div>
-        <div>Total: {pricetotal}</div>
-        <button className="text-white font-bold p-2 w-20 rounded-lg bg-cyan-500" onClick={handlePay}>PAGAR</button>
+        <div className='mt-3 flex justify-center'>
+            <div className='text-gray-300 text-2xl inline-block mr-5'>Total: $/.{pricetotal}</div>
+            <button className="text-xl bg-violet-800 rounded-lg p-2 pl-5 pr-5 text-gray-300 hover:bg-purple-800 inline-block" onClick={handlePay}>PAGAR</button>
+        </div>
     </div>
   )
 }

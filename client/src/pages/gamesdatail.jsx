@@ -34,19 +34,19 @@ export function Gamesdatail() {
             <p className="text-xl mb-2 text-slate-200">{game.description}</p>
             <p className="text-xl mb-2 text-slate-200">Realise Date: {game.date_realise}</p>
             <p className="text-xl mb-2 text-slate-200">Units Solid: {game.sellers}</p>
-            <Link to={`/developers/${dev.id}/`}><p className="text-green-200 text-xl mb-2 font-bold hover:text-green-100">Studio: {dev.name}</p></Link>
+            <Link to={`/developers/${dev.id}/`}><p className="text-slate-400 text-xl mb-2 font-bold hover:text-slate-200">Studio: {dev.name}</p></Link>
             <div className="text-xl mb-2 text-slate-200">Genders:
                 {objg.map(gen => (
-                <Link className="inline-block pr-2 pl-2 pt-1 pb-1 bg-cyan-600 ml-2 hover:bg-cyan-700" key={gen.id} to={`/gender/${gen.id}/`}><p>{gen.title}</p></Link>
+                <Link className="inline-block pr-2 pl-2 pt-1 pb-1 bg-violet-900 ml-2 hover:bg-purple-800" key={gen.id} to={`/gender/${gen.id}/`}><p>{gen.title}</p></Link>
                 ))}
             </div>
-            <p className="text-white text-2xl font-bold p-2 w-28 mr-2 rounded-lg bg-cyan-500 border-cyan-700 border inline">$/.{game.price}</p>
-            <button value={game.id} onClick={handleClick} className="text-white text-2xl font-bold p-2 w-36 rounded-lg bg-cyan-500 border-cyan-700 border hover:bg-lime-900">ADD CART</button>
+            <p className="text-white text-2xl font-bold p-2 w-28 mr-2 rounded-lg bg-violet-900 inline">$/.{game.price}</p>
+            <button value={game.id} onClick={handleClick} className="text-white text-2xl font-bold p-2 w-36 rounded-lg bg-violet-900 hover:bg-purple-800">ADD CART</button>
             <div className="text-xl mb-2 text-white font-bold">Metacritic: 
             <p className="pl-3 pt-2 w-12 h-11 ml-3 mt-2 bg-green-500 inline-block border-green-600 border" >{game.calification}</p>
             </div>
         </div>
-        <div className="mb-5">
+        <div className="mb-5 mt-5">
             <iframe  title="YouTube Video" src={`https://www.youtube.com/embed/${game.trailer}`} className="w-full" style={{ height: "700px" }} allowFullScreen></iframe>
         </div>
         <div className="mb-5">
