@@ -21,7 +21,11 @@ class CustomUserRegisterView(APIView):
             username = serializer.validated_data['username']
             email = serializer.validated_data['email']
             password = serializer.validated_data['password']
-            user = Customuser.objects.create_user(username=username, email=email, password=password)
+            image_perfil = serializer.validated_data['image_perfil']
+            first_name = serializer.validated_data['first_name']
+            last_name = serializer.validated_data['last_name']
+            print(image_perfil)
+            user = Customuser.objects.create_user(username=username, email=email, password=password, image_perfil=image_perfil, first_name=first_name, last_name=last_name)
             return Response({'message': f'User {user.username} created successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

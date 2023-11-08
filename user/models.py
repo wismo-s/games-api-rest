@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from shop.models import Cart
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
+    def create_user(self, username, email, image_perfil, first_name, last_name, password=None):
         if not username:
             raise ValueError('the username is required')
         if not password:
@@ -14,7 +14,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('the email is required')
         email = self.normalize_email(email)
         cart = Cart.objects.create()
-        user = self.model(username=username, email=email, cart=cart)
+        user = self.model(username=username, email=email, cart=cart, image_perfil=image_perfil, first_name=first_name, last_name=last_name)
         user.set_password(password)
         user.save()
         return user
@@ -35,7 +35,7 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=120, blank=False, null=False, unique=True)
     email = models.EmailField(unique=True, blank=True, null=False)
-    image_perfil = models.CharField(max_length=300, default='https://thumbs.dreamstime.com/b/perfil-de-usuario-vectorial-avatar-predeterminado-179376714.jpg', blank=True, null=False)
+    image_perfil = models.CharField(max_length=400, default='https://thumbs.dreamstime.com/b/perfil-de-usuario-vectorial-avatar-predeterminado-179376714.jpg', blank=True, null=False)
     first_name = models.CharField(max_length=30, blank=True, null=False)
     last_name = models.CharField(max_length=30, blank=True, null=False)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, default=1)

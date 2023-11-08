@@ -4,7 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
-
+html{
+  background-color: rgb(46, 16, 101);
+}
 .logo {
   height: 6em;
   padding: 1.5em;

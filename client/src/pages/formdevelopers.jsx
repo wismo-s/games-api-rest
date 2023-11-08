@@ -13,6 +13,8 @@ export function FormDevelopers() {
     e.preventDefault()
     console.log(formdata);
     await postform('developers/', formdata)
+    navigate('/developers')
+    window.location.reload(true);
   }
   const handleinputchange = (e) => {
     const { name, value } = e.target;

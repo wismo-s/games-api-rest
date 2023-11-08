@@ -46,6 +46,8 @@ export function FormGames() {
     formdata.gender = gendata;
     console.log(formdata);
     await postform('games/',formdata)
+    navigate('/')
+    window.location.reload(true);
   }
 
   const handlesubmitMultiselect = (e) =>{

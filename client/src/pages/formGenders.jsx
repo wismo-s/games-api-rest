@@ -11,6 +11,8 @@ export function FormGenders() {
     e.preventDefault();
     console.log(dataform);
     postform('genders/', dataform)
+    navigate('/gender')
+    window.location.reload(true);
   }
 
   const handleimputchange = (e) => {

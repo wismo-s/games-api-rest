@@ -51,7 +51,8 @@ export function Cart() {
             })
             cartcontext.setCart([]);
             setCartitems([]);
-            navigate('/factures')
+            navigate('/')
+            window.location.reload(true);
         })
     }
 

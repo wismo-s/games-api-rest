@@ -15,7 +15,7 @@ export function Developers() {
             </Link>
           </div>
         ))}
-        <Link to='/developers/form'>devs form</Link>
+        <Link className='rounded-full bg-violet-900 h-20 w-20 inline-block text-center pt-5 text-white text-3xl font-extrabold hover:bg-purple-900' to='/developers/form'>+</Link>
       </div>
     )
   }
