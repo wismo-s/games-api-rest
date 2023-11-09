@@ -20,7 +20,7 @@ export function FormGenders() {
     setdataform({...dataform, [name]: value})
   }
   return (
-    <div>
+    <div className=" h-screen">
       <div style={{ backgroundImage: `url(${dataform.image_url})` }} className="inline-block bg-center bg-cover h-96 w-full bg-no-repeat relative mb-4 opacity-90"></div>
       <form onSubmit={handleSubmit} className="bg-violet-900 p-7 rounded-3xl inline-block ml-4" >
         <input className="bg-violet-950 rounded-lg text-5xl placeholder-slate-300 text-gray-300 mb-2 font-bold ml-6 block w-11/12" placeholder="title" required type="text" name="title" id="title" value={dataform.title} onChange={handleimputchange}/>

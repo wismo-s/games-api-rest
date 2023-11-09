@@ -20,7 +20,7 @@ export function Createuser() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://127.0.0.1:8000/user/register/", dataform)
+    axios.post("https://games-proyecti.onrender.com/user/register/", dataform)
     .then((res) => {
       navigate('/login')
       window.location.reload(true);

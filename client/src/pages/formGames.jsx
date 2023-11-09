@@ -16,6 +16,7 @@ export function FormGames() {
     sellers: 0,
     calification: 0,
     developer: '1',
+    price: 0,
     gender: [],
   })
   const [gendata, setgendata] = useState([])
@@ -71,7 +72,7 @@ export function FormGames() {
     console.log(formdata.trailer);
   }
     return (
-      <div className="w-4/5 m-auto mt-3 mb-3 relative h-screen">
+      <div className="w-4/5 m-auto mt-3 mb-3 relative  h-full">
         <div style={{ backgroundImage: `url(${formdata.port_image})` }} className="inline-block bg-top bg-cover h-96 w-72 bg-no-repeat relative mb-4"></div>
         <form onSubmit={handlesubmit} className='absolute left-80 top-1 bg-violet-900 p-7 rounded-3xl'>
           <input required placeholder="titulo" className="bg-violet-950 rounded-lg text-5xl font-bold placeholder-slate-300 text-gray-300 mb-3 block" type="text" id="title" name="title" value={formdata.title} onChange={handleinputchange} />
@@ -90,16 +91,20 @@ export function FormGames() {
           <input required className="placeholder-slate-300 bg-violet-950 rounded-lg text-xl mb-2 text-gray-300 mr-2" type="number" min="0" max="100" id="calification" name="calification" value={formdata.calification} onChange={handleinputchange} />
           <label htmlFor="sellers" className="text-xl mb-2 text-slate-100">sellers: </label>
           <input className="placeholder-slate-300 bg-violet-950 rounded-lg text-xl mb-2 text-gray-300" type="number" min="0" name="sellers" value={formdata.sellers} onChange={handleinputchange} />
+          <label htmlFor="price" className="text-xl mb-2 text-slate-100 ml-2">price: </label>
+          <input required className="placeholder-slate-300 bg-violet-950 rounded-lg text-xl mb-2 text-gray-300 mr-2" type="number" id="price" name="price" value={formdata.price} onChange={handleinputchange} />
           <input placeholder="baner imagen url" className="placeholder-slate-300 bg-violet-950 rounded-lg text-xl mb-2 text-gray-300 block w-full" type="text" id="baner_image" name="baner_image" value={formdata.baner_image} onChange={handleinputchange} />
           <input required placeholder="trailer url"  className=" placeholder-slate-300 bg-violet-950 rounded-lg text-xl mb-2 text-gray-300 block w-full" type="text" id="trailer" name="trailer" value={formdata.trailer} onChange={splitdata} />
           <button className="bg-violet-950 rounded-lg text-xl m-auto text-gray-300 block p-2 pl-5 pr-5 hover:bg-purple-800 " >submit</button>
         </form>
-        <div className="mb-5 mt-24">
+        <div>
+          <div className="mb-5 mt-24">
             <iframe  title="YouTube Video" src={`https://www.youtube.com/embed/${formdata.trailer}`} className="w-full" style={{ height: "700px" }} allowFullScreen></iframe>
           </div>
           <div className="mb-5">
             <img src={formdata.baner_image} alt="" className="w-full" />
           </div>
+        </div>
       </div>
     )
   }

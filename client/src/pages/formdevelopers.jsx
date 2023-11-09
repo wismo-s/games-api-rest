@@ -21,7 +21,7 @@ export function FormDevelopers() {
     setformdata({...formdata, [name]: value})
   }
     return (
-      <div>
+      <div className=" h-screen">
         <div style={{ backgroundImage: `url(${formdata.baner_image})` }} className="inline-block bg-center bg-cover h-96 w-full bg-no-repeat relative mb-4 opacity-90"></div>
         <div className="w-4/5 m-auto mt-3 mb-3 flex">
           <div style={{ backgroundImage: `url(${formdata.perfil_image})` }} className="inline-block bg-center rounded-2xl bg-cover h-96 w-2/5 bg-no-repeatmb-4" ></div>

@@ -40,7 +40,7 @@ export function Cart() {
         })
     }
     const handlePay = async () =>{
-        await axios.post('http://127.0.0.1:8000/user/facture/', {
+        await axios.post('https://games-proyecti.onrender.com/user/facture/', {
             "total": pricetotal,
             "user": context.data.user.id,
             "games": cartcontext.cart   
