@@ -18,7 +18,7 @@ export function Genders() {
           </Link>
         </article>
       ))}
-      <Link className="add-game" to='/gender/form'>+</Link>
+      <Link className="add-gender" to='/gender/form'>+</Link>
       </section>
     </main>
   )

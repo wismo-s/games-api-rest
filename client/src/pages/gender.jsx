@@ -14,12 +14,8 @@ export function Gender() {
   return (
     <main style={{ paddingTop: 0 }}>
       <section className="gender-banner">
-        <img
-          src={genderfilter.image_url}
-        />
-        <h1 className="">
-          {genderfilter.title}
-        </h1>
+        <img src={genderfilter.image_url} />
+        <h1>{genderfilter.title}</h1>
       </section>
       <section className="games-container">
         {gamesfilter.map((game) => (
