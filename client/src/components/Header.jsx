@@ -14,8 +14,8 @@ function Header() {
     <header>
       <Link to="/">HOME</Link>
       <Link to="/games">GAMES</Link>
-      <Link to="/gender">CATEGORY</Link>
-      <Link to="/developers">DEVELOPER</Link>
+      <Link to="/gender">GENDERS</Link>
+      <Link to="/developers">DEVELOPERS</Link>
 
       {!user.username ? (
         <div className="account">

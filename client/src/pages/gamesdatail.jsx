@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ContextCart, Contextapp } from '../api/context';
 import { cartEdit } from '../api/list.api'
 import { Link } from "react-router-dom";
@@ -16,43 +16,52 @@ export function Gamesdatail() {
     const objg = context.data.genders.filter(gen => game.gender.includes(gen.id));
     const [dev] = objd
 
-    const handleClick = async (e) => {
+    useEffect(()=> {window.scrollTo(0,0)},[])
+    
+    async function handleClick() {
         const updatedCart = [...cartContext.cart];
-        updatedCart.push(parseInt(e.target.value));
+        updatedCart.push(game.id);
         cartContext.setCart(updatedCart)
-        console.log(cartContext);
         await cartEdit(context.data.user.cart,  {
             "id": context.data.user.cart,
             "games": updatedCart
         })
     }
+
+    const date = new Date(game.date_realise).toLocaleDateString('en-us',{year: 'numeric',month: 'short',day: 'numeric',})
+
   return (
-    <div className="w-4/5 m-auto mt-3 mb-3 relative">
-        <div style={{ backgroundImage: `url(${game.port_image})` }} className="inline-block bg-top bg-cover h-96 w-72 bg-no-repeat relative mb-4"></div>
-        <div className='absolute left-80 top-1'>
-            <h1 className="text-5xl font-bold text-white mb-3">{game.title}</h1>
-            <p className="text-xl mb-2 text-slate-200">{game.description}</p>
-            <p className="text-xl mb-2 text-slate-200">Realise Date: {game.date_realise}</p>
-            <p className="text-xl mb-2 text-slate-200">Units Solid: {game.sellers}</p>
-            <Link to={`/developers/${dev.id}/`}><p className="text-slate-400 text-xl mb-2 font-bold hover:text-slate-200">Studio: {dev.name}</p></Link>
-            <div className="text-xl mb-2 text-slate-200">Genders:
+    <main>
+    <section className='game-header'>
+        <img src={game.port_image} alt="" />
+        <div className="game-details">
+            <div className="game-title">
+                <h1>{game.title}</h1>
+                <p>${game.price}</p>
+            </div>
+            <Link className='game-studio' to={`/developers/${dev.id}/`}>{dev.name}</Link>
+            <p className='game-description'>{game.description}</p>
+            <div className="game-info">
+                <p className="game-release"><span>Release Date: </span>{date}</p>
+                <p className="game-units"><span>Units Solds:</span> {game.sellers.toLocaleString('en-US')}</p>
+            </div>
+            <div className="game-category"><span>Genders:</span>
                 {objg.map(gen => (
-                <Link className="inline-block pr-2 pl-2 pt-1 pb-1 bg-violet-900 ml-2 hover:bg-purple-800" key={gen.id} to={`/gender/${gen.id}/`}><p>{gen.title}</p></Link>
+                <Link className=" bg-violet-900 hover:bg-purple-800" key={gen.id} to={`/gender/${gen.id}/`}><p>{gen.title}</p></Link>
                 ))}
             </div>
-            <p className="text-white text-2xl font-bold p-2 w-28 mr-2 rounded-lg bg-violet-900 inline">$/.{game.price}</p>
-            <button value={game.id} onClick={handleClick} className="text-white text-2xl font-bold p-2 w-36 rounded-lg bg-violet-900 hover:bg-purple-800">ADD CART</button>
-            <div className="text-xl mb-2 text-white font-bold">Metacritic: 
-            <p className="pl-3 pt-2 w-12 h-11 ml-3 mt-2 bg-green-500 inline-block border-green-600 border" >{game.calification}</p>
+            <div className="game-footer">
+                <span>Metacritic: </span> 
+                <p>{game.calification}</p>
+                <button value={game.id} onClick={handleClick} >ADD TO CART</button>
             </div>
         </div>
-        <div className="mb-5 mt-5">
-            <iframe  title="YouTube Video" src={`https://www.youtube.com/embed/${game.trailer}`} className="w-full" style={{ height: "700px" }} allowFullScreen></iframe>
-        </div>
-        <div className="mb-5">
-            <img src={game.baner_image} alt="" className="w-full" />
-        </div>
-    </div>
+    </section>
+    <section className='game-info'>
+        <iframe title="YouTube Video" src={`https://www.youtube.com/embed/${game.trailer}`} className="w-full mb-5 mt-5 h-[700px]" allowFullScreen></iframe>
+        <img src={game.baner_image} alt="" className="w-full mb-5 mt-5" />
+    </section>
+    </main>
   )
 }
 

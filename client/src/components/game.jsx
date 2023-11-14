@@ -2,21 +2,27 @@ import { useContext } from "react"
 import { Contextapp } from "../api/context";
 import { Link } from "react-router-dom";
 
-export function Game(props) {
-    const context = useContext(Contextapp);
+export function Game({game}) {
 
-    const objd = context.data.developers.filter(dev => dev.id == props.game.developer);
-    const [dev] = objd
+  const context = useContext(Contextapp);
+  const dev = context.data.developers.find(dev => dev.id == game.developer);
+  
+  const date = new Date(game.date_realise).toLocaleDateString('en-us',{year: 'numeric',month: 'short',day: 'numeric',});
+  
 
   return (
-    <div key={props.game.id} className="w-56 bg-violet-900 h-96 rounded-lg shadow shadow-zinc-600">
-        <Link to={`/games/${props.game.id}`}>
-        <div style={{ backgroundImage: `url(${props.game.port_image})` }} className=" bg-top bg-cover h-64 w-56 bg-no-repeat hover:opacity-80"></div>
-        <h2 className="text-lg text-white font-bold mt-1 ml-2 w-auto">{props.game.title}</h2>
-        <p className="text-slate-400 ml-2 font-bold">{dev.name}</p>
-        <p className="text-white ml-2 pr-32">{props.game.date_realise}</p>
-        <div className="text-gray-200 font-bold ml-32 p-2 w-20 rounded-lg bg-purple-800">$/.{props.game.price}</div>
+    <article className="game-item">
+        <Link to={`/games/${game.id}`}>
+        <div className="game-img">
+         <img src={game.port_image} alt="" />
+        </div>
+        <div className="game-data">
+          <h2>{game.title}</h2>
+          <p className="game-title">{dev.name}</p>
+          <p className="game-date">{date}</p>
+          <span><p className="game-price">${game.price}</p></span>
+        </div>
         </Link>
-    </div>
+    </article>
   )
 }
