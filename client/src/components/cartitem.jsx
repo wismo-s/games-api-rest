@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { Contextapp } from "../api/context";
+import { FaRegTrashAlt } from "react-icons/fa";
 
-export function Cartitem(props) {
+export function Cartitem({ item, handleCLick }) {
+  const context = useContext(Contextapp);
+  const dev = context.data.developers.find((dev) => dev.id == item?.developer);
   return (
-    <div className='flex justify-between w-4/5'>
-        <div style={{ backgroundImage: `url(${props.url})` }} className=" bg-top bg-cover h-44 w-32 bg-no-repeat"></div>
-        <div className='w-1/4'>
-          <h2 className='text-gray-300 text-2xl'>{props.title}</h2>
-          <p className='text-gray-300 text-2xl'>$/.{props.price}</p>
+    <div className="cart-item">
+      <div className="item-info">
+        <img className="item-img" src={item.port_image} alt="" />
+        <div className="item-name">
+          <p className="game-name">{item.title}</p>
+          <p className="dev-name">{dev.name}</p>
         </div>
+      </div>
+      <p className="item-price">${item.price}</p>
+      <p className="item-delete">
+        <button onClick={() => handleCLick(item)}>
+          <FaRegTrashAlt />
+        </button>
+      </p>
     </div>
-  )
+  );
 }
