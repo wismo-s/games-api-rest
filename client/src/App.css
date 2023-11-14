@@ -232,6 +232,74 @@ main {
   background-color: var(--sec-color);
 }
 /* Genders */
+.genders-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-auto-rows: auto;
+  place-items: center;
+  gap: 1.5rem;
+}
+.gender-item,
+.gender-item a {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.gender-item a {
+  display: flex;
+  flex-direction: column;
+}
+.gender-item .gender-img {
+  flex: 1;
+  overflow: hidden;
+}
+.gender-item img {
+  height: 100%;
+  object-fit: cover;
+  transition: all 250ms;
+}
+.gender-item img:hover {
+  filter: grayscale(0.6);
+  scale: 1.05;
+}
+.gender-item h2 {
+  padding: 12px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: var(--sec-color);
+}
+.genders-container .add-game {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: bolder;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+}
+/* Gender Item */
+.gender-banner {
+  position: relative;
+  margin-bottom: 32px;
+}
+.gender-banner img {
+  width: 100%;
+  aspect-ratio: 10/3;
+  filter: brightness(0.4);
+}
+.gender-banner h1 {
+  position: absolute;
+  font-size: 5rem;
+  font-weight: bolder;
+  color: var(--font-color);
+  bottom: 24px;
+  left: 32px;
+}
 footer {
   width: 100%;
   display: flex;
