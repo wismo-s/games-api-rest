@@ -20,7 +20,7 @@ function Header() {
       {!user.username ? (
         <div className="account">
           <Link to="/login">LOGIN</Link>
-          <Link to="/singin">SING IN</Link>
+          <Link to="/singin">SIGN UP</Link>
         </div>
       ) : (
         <div className="account">
