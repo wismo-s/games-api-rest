@@ -383,6 +383,92 @@ main {
 .developer-banner .developer-details p {
   font-size: 1.2rem;
 }
+/* Cart */
+.cart-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-auto-rows: min-content minmax(300px, auto);
+  gap: 24px;
+  color: white;
+}
+.cart-content h3 {
+  font-weight: bolder;
+  font-size: 18px;
+  padding: 12px 8px;
+}
+.cart-content .cart-header {
+  display: flex;
+  text-align: center;
+  font-weight: bolder;
+}
+.cart-content .cart-header .cart-item {
+  flex: 1;
+  padding: 8px;
+}
+.cart-content .cart-header .cart-price,
+.cart-content .cart-header .cart-delete {
+  width: 150px;
+  padding: 8px;
+}
+.cart-content .cart-items {
+  width: 100%;
+  text-align: center;
+}
+.cart-content .cart-items * {
+  align-items: center;
+}
+.cart-items .cart-item {
+  display: flex;
+  margin-bottom: 16px;
+}
+.cart-items .cart-item .item-info {
+  flex: 1;
+  display: flex;
+  text-align: start;
+  gap: 24px;
+}
+.cart-items .cart-item .item-price,
+.cart-items .cart-item .item-delete {
+  width: 150px;
+  font-weight: bolder;
+  height: auto;
+}
+
+.cart-items .item-info img {
+  height: 120px;
+  aspect-ratio: 7/9;
+}
+.cart-items .item-name .game-name {
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+.cart-items .item-name .dev-name {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+.orden-summary {
+  border: 1px solid #ffffff;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.orden-summary span {
+  font-weight: bolder;
+}
+.orden-summary hr {
+  margin: 12px 0;
+}
+.orden-summary .summary-detail {
+  display: flex;
+  justify-content: space-between;
+}
+.orden-summary button {
+  margin-top: 12px;
+  background-color: var(--sec-color);
+  padding: 12px;
+  font-weight: bolder;
+}
 footer {
   width: 100%;
   display: flex;
