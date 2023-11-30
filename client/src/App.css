@@ -483,3 +483,93 @@ footer a {
 footer a:hover {
   background-color: var(--sec-color);
 }
+.container-carrusel{
+  width: max-content;
+  display: inline-block;
+  height: 450px;
+}
+.carrusel{
+  display: inline-block;
+  width: 99vw;
+  height: 450px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.container-list{
+  width: 90vw;
+  margin: 5px auto;
+}
+.box_form{
+  position: relative;
+  padding: 5px 5px 5px 0;
+}
+
+.input_form{
+  padding: .5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  width: 175px;
+  outline: solid 2px rgb(32, 10, 73) ;
+}
+
+.input_form_tit{
+  padding: .5rem 2rem;
+  border-radius: 5px;
+  border: 0;
+  width: 200px;
+  outline: solid 2px rgb(32, 10, 73) ;
+}
+
+.label_form{
+  color: rgb(32, 10, 73);
+  transition: .5s;
+  position: absolute;
+  top: 13px;
+  left: 1rem;
+  padding: 0 .5rem;
+}
+
+.input_form:focus{
+  outline: solid 2px white;
+}
+
+.input_form_tit:focus{
+  outline: solid 2px white;
+}
+
+.input_form:focus+.label_form{
+  transform: translateY(-1.6rem);
+  font-size: 17px;
+  background-color: rgb(76 29 149);
+  color: white;
+}
+
+.input_form_tit:focus+.label_form{
+  transform: translateY(-2.2rem);
+  font-size: 22px;
+  background-color: rgb(76 29 149);
+  color: white;
+}
+
+.input_form:not(:placeholder-shown)+.label_form{
+  transform: translateY(-1.6rem);
+  transition: .5s;
+  font-size: 17px;
+  background-color: rgb(76 29 149);
+}
+
+.input_form_tit:not(:placeholder-shown)+.label_form{
+  transform: translateY(-2.2rem);
+  transition: .5s;
+  font-size: 22px;
+  background-color: rgb(76 29 149);
+}
+
+.multiselect {
+  border-color: black ;
+}
+
+.video {
+  padding: 320px;
+}

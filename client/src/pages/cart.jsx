@@ -97,7 +97,7 @@ export function Cart() {
               <span>TOTAL</span>
               <span>${(pricetotal * 1.06).toFixed(2)}</span>
             </div>
-            <button className="summary-checkout" onClick={() => handlePay}>CHECKOUT</button>
+            <button className="summary-checkout" onClick={handlePay}>CHECKOUT</button>
           </div>
         </article>
       </section>

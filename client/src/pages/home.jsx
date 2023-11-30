@@ -1,7 +1,43 @@
+import { useContext, useEffect, useState } from "react";
+import { Game } from "../components/game";
+import { Contextapp } from "../api/context";
 const Home = () => {
+  const context = useContext(Contextapp);
+  const [image, setimage] = useState('https://bnetcmsus-a.akamaihd.net/cms/blog_header/VLDFMYRZW6681630361593471.jpg')
+  const [games, setganes] = useState(context.data.games.slice(0,6))
+  useEffect(()=>{
+    let counter = 1;
+    setInterval(() => {
+      let url1 = 'https://bnetcmsus-a.akamaihd.net/cms/blog_header/VLDFMYRZW6681630361593471.jpg'
+      let url2 = 'https://cdn-sliders.eneba.com/resized/rLb33poGVe22NEnICrk2_b5APIhBphsJ9sV5QmyDp4c_1500x400_1x-1500x400_150_0.jpg'
+      let url3 = 'https://areajugones.sport.es/wp-content/uploads/2022/12/eneba.jpg'
+      switch (counter) {
+        case 0:
+          setimage(url1)
+          counter++
+          break;
+        case 1:
+          setimage(url2)
+          counter++
+          break;
+        default:
+          setimage(url3)
+          counter = 0
+          break;
+      }
+    }, 4000);
+  }, [])
   return (
-    <main>
-      <section></section>
+    <main className="container-carrusel">
+      <section className="carrusel" style={{ backgroundImage: `url(${image})` }}>
+      </section>
+      <div className="container-list">
+      <section className="games-container">
+        {games.map((game) => (
+          <Game key={game.id} game={game} />
+        ))}
+      </section>
+      </div>
     </main>
   );
 };
