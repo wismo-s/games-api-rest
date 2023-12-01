@@ -3,6 +3,10 @@ import { Game } from "../components/game";
 import { Contextapp } from "../api/context";
 const Home = () => {
   const context = useContext(Contextapp);
+  const [date, setdate] = useState(new Date())
+  const [horas, sethora] = useState('00')
+  const [minutos, setminutos] = useState('00')
+  const [segundos, setsegundos] = useState('00')
   const [image, setimage] = useState('https://bnetcmsus-a.akamaihd.net/cms/blog_header/VLDFMYRZW6681630361593471.jpg')
   const [games, setganes] = useState(context.data.games.slice(0,6))
   useEffect(()=>{
@@ -27,8 +31,20 @@ const Home = () => {
       }
     }, 4000);
   }, [])
+  useState(()=>{
+    setInterval(()=>{
+      let f = new Date()
+      let h = f.getHours();
+      let m = (f.getMinutes() < 10 ? "0" + f.getMinutes(): f.getMinutes());
+      let s = (f.getSeconds() < 10 ? "0" + f.getSeconds(): f.getSeconds());
+      sethora(h)
+      setminutos(m)
+      setsegundos(s)
+    }, 1000)
+  }, [])
   return (
     <main className="container-carrusel">
+      <section className="text-white text-2xl p-5 w-80 mb-2 m-auto bg-violet-800">📅{date.getFullYear()}/{date.getMonth()+1}/{date.getDay()}🕒{horas}:{minutos}:{segundos}</section>
       <section className="carrusel" style={{ backgroundImage: `url(${image})` }}>
       </section>
       <div className="container-list">

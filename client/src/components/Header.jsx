@@ -36,6 +36,7 @@ function Header() {
           >
             {cartIcon ? <CartFill /> : <Cart />}
           </Link>
+          <Link to="/logout">Logout</Link>
         </div>
       )}
     </header>
